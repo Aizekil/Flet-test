@@ -14,5 +14,5 @@
 ![image](https://github.com/Aizekil/Flet-test/assets/151900236/b784ea16-4264-47ca-ba07-d8c83a8397d9)
 
 
-
+> made using the Flet library for training with the Flet library **(https://flet.dev/)**
 
