@@ -1,0 +1,48 @@
+# **MAIN**
+import flet as ft #импорт библиотек
+import os
+
+def main(page: ft.Page):
+    page.title = "Flet counter example"
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER #размещение
+
+    txt_number = ft.TextField(value="0", text_align=ft.TextAlign.RIGHT, width=100) #размер
+
+
+    def minus_click(e): #фунция минус
+        if int(txt_number.value) > 0:
+            txt_number.value = str(int(txt_number.value) - 1)
+        page.update()
+
+    def plus_click(e): #функция плюс
+        if int(txt_number.value) > -1:
+            txt_number.value = str(int(txt_number.value) + 1)
+        page.update()
+
+    def del_click(e): #функия удаления всех кликов
+        txt_number.value = "0"
+        page.update()
+
+    def save_click(e): #функция сохранения кликов в отдельный файл
+        with open("counter.txt", "w") as f:
+            f.write(txt_number.value)
+
+    page.add( #Кнопки для функций
+        ft.Row(
+            [
+                ft.IconButton(ft.icons.REMOVE, on_click=minus_click),
+                txt_number,
+                ft.IconButton(ft.icons.ADD, on_click=plus_click),
+                ft.IconButton(ft.icons.DELETE_FOREVER_ROUNDED, on_click=del_click),
+                ft.IconButton(ft.icons.SAVE, on_click=save_click),
+            ],
+            alignment=ft.MainAxisAlignment.CENTER,
+        )
+    )
+#в файл сохранение кликов добавление значений
+    # Load the saved value from the file if it exists
+    if os.path.isfile("counter.txt"):
+        with open("counter.txt", "r", ) as f:
+            txt_number.value = f.read()
+
+ft.app(main) #открытие приложений
