@@ -1,4 +1,4 @@
-# **MAIN**
+#Main code
 import flet as ft #импорт библиотек
 import os
 
